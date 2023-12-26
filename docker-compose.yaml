@@ -21,15 +21,9 @@ services:
 # POSTGRES
   postgres:
     build: ./db
-    # image: postgres:16.0
     container_name: db
     restart: always
     user: postgres
-    # environment:
-    #   - POSTGRES_USER=${DB_USER}
-    #   - POSTGRES_PASSWORD=${DB_PASSWORD}
-    #   - POSTGRES_DB=${DB_NAME}
-    #   - DATABASE_HOST=${DB_HOST}
     ports:
       - '5432:5432'
     healthcheck:
@@ -41,20 +35,7 @@ services:
       - database_postgres:/var/lib/postgresql/data
     networks:
       - net
-# # PGADMIN
-#   pgadmin:
-#     image: dpage/pgadmin4:7.8
-#     container_name: pgadmin
-#     environment:
-#       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-#       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-#     depends_on:
-#       - postgres
-#     ports:
-#       - "5050:80"
-#     networks:
-#       - net
-#     restart: unless-stopped
+
 volumes:
   api:
   database_postgres:
